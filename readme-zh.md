@@ -27,7 +27,7 @@ import (
 	"fmt"
 	"net/http"
 
-	eureka "github.com/xuanbo/eureka-client"
+	eureka "github.com/ortiot/eureka-client"
 )
 
 func main() {
@@ -46,7 +46,7 @@ func main() {
 			"PRODUCT_ENV_CODE":     "DEFAULT",
 			"SERVICE_VERSION_CODE": "DEFAULT",
 		},
-	})
+	},"","")
 	// 启动客户端，同步组册服务，异步拉取服务列表、心跳，监听退出信号删除注册信息
 	client.Start()
 
