@@ -1,6 +1,7 @@
 package eureka_client
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"os/signal"
@@ -131,9 +132,16 @@ func (c *Client) handleSignal() {
 }
 
 // NewClient 创建客户端
-func NewClient(config *Config) *Client {
+func NewClient(config *Config, statusPage, healCheckPage string) *Client {
+	ip := getLocalIP()
 	defaultConfig(config)
-	config.instance = NewInstance(getLocalIP(), config)
+	config.instance = NewInstance(ip, config)
+	if statusPage != "" {
+		config.instance.StatusPageURL = fmt.Sprintf("http://%s:%d%s", ip, config.Port, statusPage)
+	}
+	if healCheckPage != "" {
+		config.instance.HealthCheckURL = fmt.Sprintf("http://%s:%d%s", ip, config.Port, healCheckPage)
+	}
 	return &Client{Config: config}
 }
 

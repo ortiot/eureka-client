@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	eureka "github.com/xuanbo/eureka-client"
+	eureka "github.com/ortiot/eureka-client"
 )
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
 			"PRODUCT_ENV_CODE":     "DEFAULT",
 			"SERVICE_VERSION_CODE": "DEFAULT",
 		},
-	})
+	}, "", "")
 	// start client, register、heartbeat、refresh
 	client.Start()
 
